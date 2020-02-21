@@ -76,7 +76,7 @@ export default function Character() {
           });
       }, []);
 
-    useEffect(() => {
+    useEffect((charIndex) => {
       axios
         .get(`https://swapi.co/api/people/${charIndex}`)
         .then(response => {
@@ -88,7 +88,7 @@ export default function Character() {
         });
     }, []);
 
-    useEffect(() => {
+    useEffect((charIndex) => {
         axios
           .get(`https://swapi.co/api/planets/${charIndex}`)
           .then(response => {
@@ -106,21 +106,20 @@ export default function Character() {
     function LeftClik() {
         function handleClick(e) {
           e.preventDefault();
-          charIndex === 0 ? charIndex = chars : charIndex--;
         }
-        
+        setCharIndex(charIndex === 1 ? charIndex = chars : charIndex--)
         return (
-          setCharIndex()
+            setCharIndex(charIndex === 1 ? charIndex = chars : charIndex--)
         );
     }
+
     function RightClik() {
         function handleClick(e) {
           e.preventDefault();
-          charIndex === chars ? charIndex = 1 : charIndex++;
         }
-        
+        setCharIndex(charIndex === chars ? charIndex = 1 : charIndex++)
         return (
-          setCharIndex()
+          setCharIndex(charIndex === chars ? charIndex = 1 : charIndex++)
         );
     }
 
@@ -139,7 +138,7 @@ export default function Character() {
                         <p>Gender: {character.gender}</p>
                         <p>Homeworld: {home}</p>
                         <IconHodor>
-                            <button onClick={() => LeftClik() }><i className="fas fa-chevron-circle-left"></i></button>
+                            <button onClick={() => LeftClik()}><i className="fas fa-chevron-circle-left"></i></button>
                             <button onClick={() => RightClik()}><i className="fas fa-chevron-circle-right"></i></button>
                         </IconHodor>
                     </Info>
