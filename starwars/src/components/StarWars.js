@@ -33,14 +33,23 @@ const Info = styled.div `
 const Image = styled.img `
     max-width: 65%;
     max-height: 10hv;
+    height: auto;
+    background-size: contain;
     border-radius: 12px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+`;
+
+const IconHodor = styled.div `
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
 `;
 
 export default function Character() {
     const [character, setCharacter] = useState([]);
     const [home, setHome] = useState([]);
-    const [photo, setPhoto] = useState([]);
+    const [chars, setChars] = useState([]);
+    let [charIndex, setCharIndex] = useState(1);
 
     const imgURL = ["https://unrealitymag.com/wp-content/uploads/2011/11/star-wars-art5-465x465.png",
                     "https://cdn.unifiedcommerce.com/content/product/large/79346125562.jpg",
@@ -55,10 +64,21 @@ export default function Character() {
 
     var item = Math.floor(Math.random() * imgURL.length);
 
-  
+    useEffect(() => {
+        axios
+          .get(`https://swapi.co/api/people`)
+          .then(response => {
+              console.log("amount of people", response.data.count);
+              setChars(response.data.count);
+          })
+          .catch(error => {
+            console.log("the data was not return", error);
+          });
+      }, []);
+
     useEffect(() => {
       axios
-        .get(`https://swapi.co/api/people/1`)
+        .get(`https://swapi.co/api/people/${charIndex}`)
         .then(response => {
             console.log(response.data);
             setCharacter(response.data);
@@ -70,28 +90,39 @@ export default function Character() {
 
     useEffect(() => {
         axios
-          .get(`https://swapi.co/api/planets/1`)
+          .get(`https://swapi.co/api/planets/${charIndex}`)
           .then(response => {
               setHome(response.data.name);
           })
           .catch(error => {
             console.log("the data was not return", error);
           });
-      }, []);
+    }, []);
 
-      useEffect(() => {
-        axios
-          .get(`http://intergalacticdb.me/api/characters/`)
-          .then(response => {
-              console.log(response);
-              //setPhoto(response.data.image);
-          })
-          .catch(error => {
-            console.log("the data was not return", error);
-          });
-      }, []);
+    
+    console.log(chars);
+    console.log(charIndex);
 
-      
+    function LeftClik() {
+        function handleClick(e) {
+          e.preventDefault();
+          charIndex === 0 ? charIndex = chars : charIndex--;
+        }
+        
+        return (
+          setCharIndex()
+        );
+    }
+    function RightClik() {
+        function handleClick(e) {
+          e.preventDefault();
+          charIndex === chars ? charIndex = 1 : charIndex++;
+        }
+        
+        return (
+          setCharIndex()
+        );
+    }
 
     return (
         <CardHodor>
@@ -107,6 +138,10 @@ export default function Character() {
                         <p>Birth year: {character.birth_year}</p>
                         <p>Gender: {character.gender}</p>
                         <p>Homeworld: {home}</p>
+                        <IconHodor>
+                            <button onClick={() => LeftClik() }><i className="fas fa-chevron-circle-left"></i></button>
+                            <button onClick={() => RightClik()}><i className="fas fa-chevron-circle-right"></i></button>
+                        </IconHodor>
                     </Info>
                 </CardContent>
             </Card>

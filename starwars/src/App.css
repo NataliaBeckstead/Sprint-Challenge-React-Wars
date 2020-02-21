@@ -20,4 +20,15 @@ p {
   color: #443e3e;
   text-shadow: 1px 1px 5px #fff;
 }
+
+i {
+  font-size: 2rem;
+  color: #443e3e;
+}
+
+button {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+}
+
 /* write your parent styles in here for your App.js */
