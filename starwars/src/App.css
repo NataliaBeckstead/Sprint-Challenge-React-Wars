@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Changa|Montserrat+Subrayada|Orbitron&display=swap');
+
+h1 {
+  font-family: 'Montserrat Subrayada', Arial, Helvetica, sans-serif;
+  font-size: 4.5rem;
+}
+
+h2 {
+  font-family: 'Orbitron', Arial, Helvetica, sans-serif;
+}
+
+p {
+  font-family: 'Changa', Arial, Helvetica, sans-serif;
+}
+
 .App {
   text-align: center;
 }
