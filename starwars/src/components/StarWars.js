@@ -74,13 +74,13 @@ export default function Character() {
           .catch(error => {
             console.log("the data was not return", error);
           });
-      }, []);
-
-    useEffect((charIndex) => {
+      }, [charIndex]);
+    console.log("trying to use in url", charIndex);
+    useEffect(() => {
       axios
-        .get(`https://swapi.co/api/people/${charIndex}`)
+        .get(`https://swapi.co/api/people/${charIndex}/`)
         .then(response => {
-            console.log(response.data);
+            console.log("people/charIndex", response.data);
             setCharacter(response.data);
         })
         .catch(error => {
@@ -88,16 +88,17 @@ export default function Character() {
         });
     }, []);
 
-    useEffect((charIndex) => {
+    useEffect(() => {
         axios
-          .get(`https://swapi.co/api/planets/${charIndex}`)
+          .get(`https://swapi.co/api/planets/${charIndex}/`)
           .then(response => {
               setHome(response.data.name);
+              
           })
           .catch(error => {
             console.log("the data was not return", error);
           });
-    }, []);
+    }, [charIndex]);
 
     
     console.log(chars);
@@ -138,8 +139,8 @@ export default function Character() {
                         <p>Gender: {character.gender}</p>
                         <p>Homeworld: {home}</p>
                         <IconHodor>
-                            <button onClick={() => LeftClik()}><i className="fas fa-chevron-circle-left"></i></button>
-                            <button onClick={() => RightClik()}><i className="fas fa-chevron-circle-right"></i></button>
+                            <button onClick={() => LeftClik() }><i className="fas fa-chevron-circle-left"></i></button>
+                            <button onClick={() => RightClik() }><i className="fas fa-chevron-circle-right"></i></button>
                         </IconHodor>
                     </Info>
                 </CardContent>
