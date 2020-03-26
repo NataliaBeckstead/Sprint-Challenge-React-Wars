@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Changa|Montserrat+Subrayada|Orbitron&display=swap');
+
+h1 {
+  font-family: 'Montserrat Subrayada', Arial, Helvetica, sans-serif;
+  font-size: 4.5rem;
+}
+
+h2 {
+  font-family: 'Orbitron', Arial, Helvetica, sans-serif;
+}
+
+p {
+  font-family: 'Changa', Arial, Helvetica, sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -5,4 +20,15 @@
   color: #443e3e;
   text-shadow: 1px 1px 5px #fff;
 }
+
+i {
+  font-size: 2rem;
+  color: #443e3e;
+}
+
+button {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+}
+
 /* write your parent styles in here for your App.js */
